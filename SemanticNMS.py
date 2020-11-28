@@ -126,11 +126,7 @@ if __name__ == '__main__':
                     combined_list = sorted(Final_combined_list, key=lambda x: x[1], reverse=True)[0:20]
 
                     keyword2SearchResult[keyword] = combined_list
-            for keyword in data['keywords']:
-                if keyword not in keyword2SearchResult and keyword!="":
-                    new_expandwords = CleanQE(keyword, [keyword], DB_vocab_list, ps)
-                    if len(new_expandwords)!=0:
-                        keyword2SearchResult[keyword] = [(word,1.0) for word in new_expandwords]
+
             data["plau_words"] = keyword2SearchResult
         pickle.dump(all_data,open(output_qald,'wb'))
         print(output_qald)
