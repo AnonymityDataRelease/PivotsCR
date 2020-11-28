@@ -7,8 +7,9 @@ The used **Knowledge Base** is  DBpedia 2016-10. Please download the KB from thi
 
 We processed this dataset for cross-lingual entity linking task, and result files are in **QALD_data** folder:
   - **QALD_multilingual4-9.json**: we merged multilingual QALD 4-9 data, and then extracted examples which can be execute on DBpedia 2016-10. This file can be used for cross-lingual entity linking and cross-lingual question answering over knowledge base. 
-  - **QALD_XEL folder**. We extracted data for cross-lingual entity linking spanning eight languages. Below is an example: 
+  - **QALD_XEL folder**. We extracted data for cross-lingual entity linking spanning eight languages. Below are sevearl examples: 
  ```ruby
+    # an example in QALD_XEL/qald_de.json
     {
         "context": "Gib mir alle Filme mit Tom Cruise.",
         "id": 13,
@@ -20,7 +21,20 @@ We processed this dataset for cross-lingual entity linking task, and result file
             "<http://dbpedia.org/ontology/Film>",
             "<http://dbpedia.org/resource/Tom_Cruise>"
         ]
-    },
+    }
+    # an example in QALD_XEL/qald_ro.json
+    {
+        "context": "Dă-mi toate prenumele feminine.",
+        "id": 30,
+        "keywords": [
+            "feminine",
+            "prenume"
+        ],
+        "uris": [
+            "<http://dbpedia.org/resource/Female>",
+            "<http://dbpedia.org/ontology/GivenName>"
+        ]
+    }
 ```
 
 ## Code
