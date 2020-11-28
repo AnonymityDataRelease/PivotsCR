@@ -11,17 +11,17 @@ We processed this dataset for cross-lingual entity linking task, and result file
  ```ruby
     # an example in QALD_XEL/qald_de.json
     {
-        "context": "Gib mir alle Filme mit Tom Cruise.",
-        "id": 13,
+        "context": "Wer ist der König der Niederlande?",
+        "id": 562,
         "keywords": [
-            "Film",
-            "Tom Cruise"
+            "König",
+            "Niederlande"
         ],
         "uris": [
-            "<http://dbpedia.org/ontology/Film>",
-            "<http://dbpedia.org/resource/Tom_Cruise>"
+            "<http://dbpedia.org/ontology/Royalty>",
+            "<http://dbpedia.org/resource/Netherlands>"
         ]
-    }
+    },
     # an example in QALD_XEL/qald_ro.json
     {
         "context": "Dă-mi toate prenumele feminine.",
@@ -58,7 +58,7 @@ We processed this dataset for cross-lingual entity linking task, and result file
  en_word_vectors = gensim.models.KeyedVectors.load_word2vec_format("wiki.en.align.vec", binary=False)
  de_word_vectors = gensim.models.KeyedVectors.load_word2vec_format("wiki.de.align.vec", binary=False)
 
- for word in de_mention.split(" "):
+ for word in de_mention.split(" "):# de_mention is the string of a German mention, e.g., de_mention = "Vincent van Gogh"
  	print(word, en_word_vectors.similar_by_vector(de_word_vectors[word],topn=20))
  ```
  
