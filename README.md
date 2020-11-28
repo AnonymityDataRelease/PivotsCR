@@ -45,9 +45,10 @@ We processed this dataset for cross-lingual entity linking task, and result file
 	python Gen_KB_entities.py 	# generate all entities in KB
 	 ```
  - Build search index for all entities.  In this paper, we build the Index using [Whoosh](https://whoosh.readthedocs.io/en/latest/index.html), which is a library of classes and functions for indexing text and then searching the index. E.g.,
-
-  	```python Build_KB_Index.py``` 
-  
+  	```
+	python Build_KB_Index.py
+	``` 
  - Search the plausible mentions, return top-1000 candidates. E.g., 
- 
- 	```python LexicalSearch.py``` 
+ 	```
+	python LexicalSearch.py
+	``` 
