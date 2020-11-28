@@ -35,9 +35,11 @@ We processed this dataset for cross-lingual entity linking task, and result file
 **Step3:** Generate Plausible English Mentions
 
  - Search the most similar English words for each word in a source-language mention. In this paper, we used the CSLS (Cross-domain similarity local scaling) proposed by [MUSE](https://github.com/facebookresearch/MUSE). Alternatively, you can also employ the cosine similarity of vectors to measure the word similarity and [GENSIM](https://radimrehurek.com/gensim/models/keyedvectors.html) is suggested.
- - Clean the similar words using NMS algorithm
- - Combine the Plausible Mentions
-
+ - Clean the similar words using NMS algorithm, and generated plausible English mentions for each source mention
+ ```
+ 	python SemanticNMS.py
+ ```
+ 
 **Step4:**  Lexical Retrieval and Generate TopN Candidates
  - Generate all entities in KB. In our paper, we used the DBpedia 2016-10, which contains ~6million entites. E.g.,
 	 ``` 
