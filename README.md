@@ -49,19 +49,19 @@ We processed this dataset for cross-lingual entity linking task, and result file
 **Step3:** Generate Plausible English Mentions
 
  - Search the most similar English words for each word in a source-language mention. In this paper, we used the CSLS (Cross-domain similarity local scaling) proposed by [MUSE](https://github.com/facebookresearch/MUSE). Alternatively, you can employ the cosine similarity of vectors to measure the word similarity and [GENSIM](https://radimrehurek.com/gensim/models/keyedvectors.html) is suggested. E.g.,
- ```ruby
- # download aligned word embeddings
- wget https://dl.fbaipublicfiles.com/fasttext/vectors-aligned/wiki.en.align.vec
- wget https://dl.fbaipublicfiles.com/fasttext/vectors-aligned/wiki.de.align.vec
- # generate similar words
- import gensim
- en_word_vectors = gensim.models.KeyedVectors.load_word2vec_format("wiki.en.align.vec", binary=False)
- de_word_vectors = gensim.models.KeyedVectors.load_word2vec_format("wiki.de.align.vec", binary=False)
+	 ```ruby
+	 # download aligned word embeddings
+	 wget https://dl.fbaipublicfiles.com/fasttext/vectors-aligned/wiki.en.align.vec
+	 wget https://dl.fbaipublicfiles.com/fasttext/vectors-aligned/wiki.de.align.vec
+	 # generate similar words
+	 import gensim
+	 en_word_vectors = gensim.models.KeyedVectors.load_word2vec_format("wiki.en.align.vec", binary=False)
+	 de_word_vectors = gensim.models.KeyedVectors.load_word2vec_format("wiki.de.align.vec", binary=False)
 
- for word in de_mention.split(" "):# de_mention is the string of a German mention, e.g., de_mention = "Vincent van Gogh"
- 	print(word, en_word_vectors.similar_by_vector(de_word_vectors[word],topn=20))
- ```
- 
+	 for word in de_mention.split(" "):# de_mention is the string of a German mention, e.g., de_mention = "Vincent van Gogh"
+		print(word, en_word_vectors.similar_by_vector(de_word_vectors[word],topn=20))
+	 ```
+
  - Clean the similar words using NMS algorithm, and generated plausible English mentions for each source mention
 	 ```
 	 python SemanticNMS.py
