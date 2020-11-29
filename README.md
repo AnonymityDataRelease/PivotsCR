@@ -35,7 +35,7 @@ We processed these datasets for cross-lingual entity linking task. We merged mul
     }
 ```
 
-Notable, the used knowledge base for QALD dataset is DBpedia 2016-10. Please download this knowledge base from this [link](https://wiki.dbpedia.org/downloads-2016-10). We provided our code to download this knowledge base and extract its all entities for reference. E.g., 
+Notable, the used knowledge base for QALD dataset is DBpedia 2016-10. Please download this knowledge base from this [link](https://wiki.dbpedia.org/downloads-2016-10). We provided our code to download this knowledge base and extract its all entities (~6 million) for reference. E.g., 
  ``` ruby
 	bash download.sh		# download the KB files
 	python Gen_KB_entities.py 	# generate all entities in KB
