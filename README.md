@@ -44,7 +44,7 @@ python Gen_KB_entities.py 	# generate all entities in KB
 ## Code
 **Step1:** Preparing cross-lingual entity linking data and the corresponding Knowledge Base.
  
-**Step2:** Generating aligned word embedding for source language (e.g., German) and target language (English) by
+**Step2:** Generating aligned word embedding for source language (e.g., German) and target language (English). There are two optional methods:
  - Directly download the published aligned word vectors by fastText from [here](https://fasttext.cc/docs/en/aligned-vectors.html). E.g.,
 	```ruby
 	# download aligned word embeddings
@@ -54,6 +54,8 @@ python Gen_KB_entities.py 	# generate all entities in KB
  - Employ [MUSE](https://github.com/facebookresearch/MUSE) to align monolingual word embeddings:
 	- **supervised**: using a bilingual dictionary to learn a mapping from the source to the target space.
 	- **unsupervised**: without any parallel data or anchor point, learn a mapping from the source to the target space using adversarial training and (iterative) Procrustes refinement.
+	
+Notable, other multilingual word representation methods also can be used.
 
 **Step3:** Generate Plausible English Mentions
 
