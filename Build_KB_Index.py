@@ -41,12 +41,12 @@ if __name__ == '__main__':
 
     schema = Schema(title=TEXT(stored=True, analyzer=StemmingAnalyzer()), content=TEXT(stored=True))
 
-    # 创建索引对象
+    
     if not os.path.exists(output_DBindex_dir):
         os.mkdir(output_DBindex_dir)
     ix = create_in(output_DBindex_dir, schema)
 
-    # 添加文档到索引中
+
     writer = ix.writer()
     for mention, uri in tqdm(mention2uri.items()):
         writer.add_document(title=mention, content=" ".join(uri))
