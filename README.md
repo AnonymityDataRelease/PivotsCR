@@ -4,12 +4,12 @@ We released the used QALD data and code for the paper entitled "Pivots-based Can
 The original QALD 4-9 datasets are available [here](https://github.com/ag-sc/QALD).  
 
 We processed these datasets for cross-lingual entity linking task. We merged multilingual QALD 4-9 data. These examples are cross-lingual question answering over different knowledge bases. We extracted examples which can be execute on DBpedia 2016-10. The result files are in **QALD_data** folder:
-  - **QALD_multilingual4-9.json**: This file can be used for cross-lingual entity linking (XEL) and cross-lingual question answering over knowledge base (X-KBQA). Each example contains: 
-  -- 1) questions from different languages, 
-  -- 2) sparql to answer questions (gold answer for X-KBQA task, denoted as query), 
-  -- 3) keywords of questions, 
-  -- 4) corresponding entities of keywords (gold answer for XEL task, denoted as uris), and 
-  -- other information (e.g., id, answer type).
+ - **QALD_multilingual4-9.json**: This file can be used for cross-lingual entity linking (XEL) and cross-lingual question answering over knowledge base (X-KBQA). Each example contains: 
+	 - questions from different languages, 
+	 - sparql to answer questions (gold answer for X-KBQA task, denoted as query), 
+	 - keywords of questions, 
+	 - corresponding entities of keywords (gold answer for XEL task, denoted as uris), and
+	 - other information (e.g., id, answer type).
   - **QALD_XEL folder**. We further cleaned up the pervious examples to produce XEL data of eight different languages, including German (de), French (fr), Russian (ru), Dutch (nl), Spanish (es), Italian (it), Romanian (ro), and Portuguese (pt). Below are several examples: 
  ```ruby
     # an example in QALD_XEL/qald_de.json
@@ -50,7 +50,12 @@ python Gen_KB_entities.py 	# generate all entities in KB
 
 ## Code
 **Step1:** Preparing cross-lingual entity linking data and the corresponding Knowledge Base.
- 
+
+We provided our code to download this knowledge base and extract its all entities (~6 million) for reference. E.g., 
+```ruby
+bash download.sh			# download the KB files
+python Gen_KB_entities.py 	# generate all entities in KB
+```
 **Step2:** Generating aligned word embedding for source language (e.g., German) and target language (English). There are two optional methods:
  - Directly download the published aligned word vectors by fastText from [here](https://fasttext.cc/docs/en/aligned-vectors.html). E.g.,
 	```ruby
@@ -73,22 +78,29 @@ Notable, other multilingual word representation methods also can be used.
 	 en_word_vectors = gensim.models.KeyedVectors.load_word2vec_format("wiki.en.align.vec", binary=False)
 	 de_word_vectors = gensim.models.KeyedVectors.load_word2vec_format("wiki.de.align.vec", binary=False)
 
-	 for word in de_mention.split(" "):# de_mention is the string of a German mention, e.g., de_mention = "Vincent van Gogh"
-		print(word, en_word_vectors.similar_by_vector(de_word_vectors[word],topn=20))
+	de_mention = "sieben wunder der antiken welt"# means--Seven Wonders of the Ancient World
+	 for word in de_mention.split(" "):
+		print(word, en_word_vectors.similar_by_vector(de_word_vectors[word],topn=5))
+	# output:
+	# sieben [('seven', 0.6118286848068237), ('six', 0.5721521377563477), ('eight', 0.5684829354286194), ('nine', 0.5678043961524963), ('five', 0.565507173538208)]
+	# wunder [('miracle', 0.4607662260532379), ('miracles', 0.38330158591270447), ('‘miracle', 0.34849193692207336), ('miraculous', 0.3447709083557129), ('miracl', 0.3389461040496826)]
+	# ...
+	# welt [('world', 0.4459209144115448), ('world—', 0.39981919527053833), ('worlds', 0.39319226145744324), ('world,', 0.3859684467315674), ('world—i', 0.3614097535610199)]
 	 ```
 
  - Clean the similar words using NMS algorithm, and generate a set of plausible English mentions for each source mention.
 	 ```
-	 python SemanticNMS.py
+	 python SemanticNMS.py [input_file] [output_file]
 	 
-	 # input data example:
-	 
-	 # output data example:
+	 # toy examples:
+	 # input file: toydata/input_de.json
+	 # output file: toydata/output_plausible_de.json
+	 # plausible English mentions of "sieben wunder der antiken welt":
+	 ('seven miracle the antiquity world', 0.05677208132856291)
+	 ('seven miracle the ancient world', 0.05670805866980465)...
 	 ```
  
-**Step4:**  Lexical Retrieval and Generate TopN Candidates
- - Generate all entities in KB. In our paper, we used the DBpedia 2016-10, which contains ~6million entites. E.g.,
-	
+**Step4:**  Lexical Retrieval and Generate TopN Candidates	
  - Build search index for all entities.  In this paper, we build the index of all entities in KB using [Whoosh](https://whoosh.readthedocs.io/en/latest/index.html), which is a library of classes and functions for indexing text and then searching the index. E.g.,
   	```
 	python Build_KB_Index.py
