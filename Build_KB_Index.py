@@ -16,9 +16,8 @@ import pickle
 import os
 if __name__ == '__main__':
 
-    uri2mention_file = "clean_kb_data/uri2mention_dis.pk"
-
-    output_cleaned_mention2uri_file = "clean_kb_data/new_mention2uri.pk"
+    uri2mention_file = "uri2mention_dis.pk"
+    output_cleaned_mention2uri_file = "cleaned_mention2uri.pk"
     output_DBindex_dir = "DBIndex"
 
     if os.path.exists(output_cleaned_mention2uri_file):
