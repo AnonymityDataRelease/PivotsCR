@@ -94,7 +94,7 @@ Notable, other multilingual word representation methods also can be used.
 	 
 	 # toy examples:
 	 # input file: toydata/input_de.json
-	 # output file: toydata/output_plausible_de.json
+	 # output file: toydata/plausible_de.json
 	 # plausible English mentions of "sieben wunder der antiken welt":
 	 ('seven miracle the antiquity world', 0.05677208132856291)
 	 ('seven miracle the ancient world', 0.05670805866980465)...
@@ -111,4 +111,10 @@ Notable, other multilingual word representation methods also can be used.
  - Search the plausible mentions, return top-1000 candidates. E.g., 
  	```
 	python LexicalSearch.py
+	# input_file: toydata/plausible_de.json
+	# output_file: toydata/output_de.json. E.g.,
+	the xel_cr_results of "sieben wunder der antiken welt":
+	[('<http://dbpedia.org/resource/Category:Seven_Wonders_of_the_Ancient_World>', 0.04279009208377855),
+	('<http://dbpedia.org/resource/Seven_Wonders_of_the_Ancient_World>', 0.04279009208377855),
+	('<http://dbpedia.org/resource/World_of_Miracles>', 0.035886112485214505)...]
 	``` 
