@@ -39,7 +39,12 @@ We processed these datasets for cross-lingual entity linking task. We merged mul
 **Step1:** Preparing cross-lingual entity linking data and the corresponding Knowledge Base.
  
 **Step2:** Generating aligned word embedding for source language (e.g., German) and target language (English) by
- - Directly download the published aligned word vectors by fastText from [here](https://fasttext.cc/docs/en/aligned-vectors.html). Or
+ - Directly download the published aligned word vectors by fastText from [here](https://fasttext.cc/docs/en/aligned-vectors.html). E.g.,
+	  ```ruby
+	  # download aligned word embeddings
+		 wget https://dl.fbaipublicfiles.com/fasttext/vectors-aligned/wiki.en.align.vec
+		 wget https://dl.fbaipublicfiles.com/fasttext/vectors-aligned/wiki.de.align.vec
+	```
  - Employ [MUSE](https://github.com/facebookresearch/MUSE) to align monolingual word embeddings:
 	- **supervised**: using a bilingual dictionary to learn a mapping from the source to the target space.
 	- **unsupervised**: without any parallel data or anchor point, learn a mapping from the source to the target space using adversarial training and (iterative) Procrustes refinement.
@@ -48,9 +53,6 @@ We processed these datasets for cross-lingual entity linking task. We merged mul
 
  - Search the most similar English words for each word in a source-language mention. In this paper, we used the CSLS (Cross-domain similarity local scaling) proposed by [MUSE](https://github.com/facebookresearch/MUSE). Alternatively, you can employ the cosine similarity of vectors to measure the word similarity and [GENSIM](https://radimrehurek.com/gensim/models/keyedvectors.html) is suggested. E.g.,
 	 ```ruby
-	 # download aligned word embeddings
-	 wget https://dl.fbaipublicfiles.com/fasttext/vectors-aligned/wiki.en.align.vec
-	 wget https://dl.fbaipublicfiles.com/fasttext/vectors-aligned/wiki.de.align.vec
 	 # generate similar words
 	 import gensim
 	 en_word_vectors = gensim.models.KeyedVectors.load_word2vec_format("wiki.en.align.vec", binary=False)
