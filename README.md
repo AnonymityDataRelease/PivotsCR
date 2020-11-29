@@ -46,11 +46,11 @@ python Gen_KB_entities.py 	# generate all entities in KB
  
 **Step2:** Generating aligned word embedding for source language (e.g., German) and target language (English) by
  - Directly download the published aligned word vectors by fastText from [here](https://fasttext.cc/docs/en/aligned-vectors.html). E.g.,
-```ruby
+	```ruby
 	# download aligned word embeddings
 	wget https://dl.fbaipublicfiles.com/fasttext/vectors-aligned/wiki.en.align.vec
 	wget https://dl.fbaipublicfiles.com/fasttext/vectors-aligned/wiki.de.align.vec
-```
+	```
  - Employ [MUSE](https://github.com/facebookresearch/MUSE) to align monolingual word embeddings:
 	- **supervised**: using a bilingual dictionary to learn a mapping from the source to the target space.
 	- **unsupervised**: without any parallel data or anchor point, learn a mapping from the source to the target space using adversarial training and (iterative) Procrustes refinement.
