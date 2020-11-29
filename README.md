@@ -102,15 +102,17 @@ Notable, other multilingual word representation methods also can be used.
  
 **Step4:**  Lexical Retrieval and Generate TopN Candidates	
  - Build search index for all entities.  In this paper, we build the index of all entities in KB using [Whoosh](https://whoosh.readthedocs.io/en/latest/index.html), which is a library of classes and functions for indexing text and then searching the index. E.g.,
-  	```
+  	```ruby
 	python Build_KB_Index.py
+	
 	# input file: a dictionary of all entities in KB. E.g.,
 	# {'<http://dbpedia.org/resource/World_of_Miracles>': 'world miracles', '<http://dbpedia.org/resource/Antique_Beat>':'antique beat'}
 	# output: the Index
 	``` 
  - Search the plausible mentions, return top-1000 candidates. E.g., 
- 	```
+ 	```ruby
 	python LexicalSearch.py
+	
 	# input_file: toydata/plausible_de.json
 	# output_file: toydata/output_de.json. E.g.,
 	the xel_cr_results of "sieben wunder der antiken welt":
