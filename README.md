@@ -104,7 +104,8 @@ Notable, other multilingual word representation methods also can be used.
  - Build search index for all entities.  In this paper, we build the index of all entities in KB using [Whoosh](https://whoosh.readthedocs.io/en/latest/index.html), which is a library of classes and functions for indexing text and then searching the index. E.g.,
   	```
 	python Build_KB_Index.py
-	# input file: a dictionary of all entities in KB
+	# input file: a dictionary of all entities in KB. E.g.,
+	# {'<http://dbpedia.org/resource/World_of_Miracles>': 'world miracles', '<http://dbpedia.org/resource/Antique_Beat>':'antique beat'}
 	# output: the Index
 	``` 
  - Search the plausible mentions, return top-1000 candidates. E.g., 
