@@ -1,5 +1,7 @@
 # PivotsCR
 We released the used QALD data and code for the paper entitled "Pivots-based Candidate Retrieval for Cross-lingual Entity Linking".
+Toy files and examples are provided to run our method.
+
 # QALD Data
 The original QALD 4-9 datasets are available [here](https://github.com/ag-sc/QALD).  
 
