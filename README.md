@@ -3,13 +3,7 @@ We released the used QALD data and code for the paper entitled "Pivots-based Can
 # QALD Data
 The original QALD 4-9 datasets are available [here](https://github.com/ag-sc/QALD).  
 
-We processed these datasets for cross-lingual entity linking task. We merged multilingual QALD 4-9 data. These examples are cross-lingual question answering over different knowledge bases. We extracted examples which can be execute on DBpedia 2016-10. Please download this knowledge base from this [link](https://wiki.dbpedia.org/downloads-2016-10). We provided our code to download this knowledge base and extract its all entities for reference. E.g., 
- ``` ruby
-	bash download.sh		# download the KB files
-	python Gen_KB_entities.py 	# generate all entities in KB
-```
-
-The result files are in **QALD_data** folder:
+We processed these datasets for cross-lingual entity linking task. We merged multilingual QALD 4-9 data. These examples are cross-lingual question answering over different knowledge bases. We extracted examples which can be execute on DBpedia 2016-10. The result files are in **QALD_data** folder:
   - **QALD_multilingual4-9.json**: This file can be used for cross-lingual entity linking and cross-lingual question answering over knowledge base. 
   - **QALD_XEL folder**. We extracted data for cross-lingual entity linking spanning eight languages. Below are sevearl examples: 
  ```ruby
@@ -39,6 +33,12 @@ The result files are in **QALD_data** folder:
             "<http://dbpedia.org/ontology/GivenName>"
         ]
     }
+```
+
+Notable, the used knowledge base for QALD dataset is DBpedia 2016-10. Please download this knowledge base from this [link](https://wiki.dbpedia.org/downloads-2016-10). We provided our code to download this knowledge base and extract its all entities for reference. E.g., 
+ ``` ruby
+	bash download.sh		# download the KB files
+	python Gen_KB_entities.py 	# generate all entities in KB
 ```
 
 ## Code
