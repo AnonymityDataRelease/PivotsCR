@@ -75,6 +75,10 @@ Notable, other multilingual word representation methods also can be used.
  - Clean the similar words using NMS algorithm, and generate a set of plausible English mentions for each source mention.
 	 ```
 	 python SemanticNMS.py
+	 
+	 # input data example:
+	 
+	 # output data example:
 	 ```
  
 **Step4:**  Lexical Retrieval and Generate TopN Candidates
