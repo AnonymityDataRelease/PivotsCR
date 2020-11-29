@@ -1,12 +1,10 @@
 # PivotsCR
-We released the used QALD data and code for the paper entitled "Pivots-based Candidate Retrieval for Cross-lingual Entity Linking"
+We released the used QALD data and code for the paper entitled "Pivots-based Candidate Retrieval for Cross-lingual Entity Linking".
 # QALD Data
-The original QALD 4-9 dataset is available [here](https://github.com/ag-sc/QALD).  
+The original QALD 4-9 datasets are available [here](https://github.com/ag-sc/QALD).  
 
-The used **Knowledge Base** is  DBpedia 2016-10. Please download the KB from this [link](https://wiki.dbpedia.org/downloads-2016-10).
-
-We processed this dataset for cross-lingual entity linking task, and result files are in **QALD_data** folder:
-  - **QALD_multilingual4-9.json**: we merged multilingual QALD 4-9 data, and then extracted examples which can be execute on DBpedia 2016-10. This file can be used for cross-lingual entity linking and cross-lingual question answering over knowledge base. 
+We processed these datasets for cross-lingual entity linking task. We merged multilingual QALD 4-9 data, and then extracted examples which can be execute on knowledge base. In this paper, the used **Knowledge Base** is DBpedia 2016-10. Please download the KB from this [link](https://wiki.dbpedia.org/downloads-2016-10). The result files are in **QALD_data** folder:
+  - **QALD_multilingual4-9.json**: This file can be used for cross-lingual entity linking and cross-lingual question answering over knowledge base. 
   - **QALD_XEL folder**. We extracted data for cross-lingual entity linking spanning eight languages. Below are sevearl examples: 
  ```ruby
     # an example in QALD_XEL/qald_de.json
@@ -40,10 +38,10 @@ We processed this dataset for cross-lingual entity linking task, and result file
 ## Code
 **Step1:** Preparing cross-lingual entity linking data and the corresponding Knowledge Base.
  
- **Step2:** Generating aligned word embedding for source language (e.g., German) and target language (English) by
- - Directly download the published aligned word vectors for 44 languages based on the pre-trained vectors computed on Wikipedia using fastText for [here](https://fasttext.cc/docs/en/aligned-vectors.html). Or
+**Step2:** Generating aligned word embedding for source language (e.g., German) and target language (English) by
+ - Directly download the published aligned word vectors by fastText from [here](https://fasttext.cc/docs/en/aligned-vectors.html). Or
  - Employ [MUSE](https://github.com/facebookresearch/MUSE) to align monolingual word embeddings:
-	 - **supervised**: using a train bilingual dictionary to learn a mapping from the source to the target space.
+	- **supervised**: using a bilingual dictionary to learn a mapping from the source to the target space.
 	- **unsupervised**: without any parallel data or anchor point, learn a mapping from the source to the target space using adversarial training and (iterative) Procrustes refinement.
 
 **Step3:** Generate Plausible English Mentions
@@ -62,7 +60,7 @@ We processed this dataset for cross-lingual entity linking task, and result file
 		print(word, en_word_vectors.similar_by_vector(de_word_vectors[word],topn=20))
 	 ```
 
- - Clean the similar words using NMS algorithm, and generated plausible English mentions for each source mention
+ - Clean the similar words using NMS algorithm, and generate a set of plausible English mentions for each source mention.
 	 ```
 	 python SemanticNMS.py
 	 ```
@@ -70,10 +68,10 @@ We processed this dataset for cross-lingual entity linking task, and result file
 **Step4:**  Lexical Retrieval and Generate TopN Candidates
  - Generate all entities in KB. In our paper, we used the DBpedia 2016-10, which contains ~6million entites. E.g.,
 	 ``` 
-	bash download.sh		# download the KB
+	bash download.sh		# download the KB files
 	python Gen_KB_entities.py 	# generate all entities in KB
 	 ```
- - Build search index for all entities.  In this paper, we build the Index using [Whoosh](https://whoosh.readthedocs.io/en/latest/index.html), which is a library of classes and functions for indexing text and then searching the index. E.g.,
+ - Build search index for all entities.  In this paper, we build the index of all entities in KB using [Whoosh](https://whoosh.readthedocs.io/en/latest/index.html), which is a library of classes and functions for indexing text and then searching the index. E.g.,
   	```
 	python Build_KB_Index.py
 	``` 
