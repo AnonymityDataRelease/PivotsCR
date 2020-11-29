@@ -37,8 +37,8 @@ We processed these datasets for cross-lingual entity linking task. We merged mul
 
 Notable, the used knowledge base for QALD dataset is DBpedia 2016-10. Please download this knowledge base from this [link](https://wiki.dbpedia.org/downloads-2016-10). We provided our code to download this knowledge base and extract its all entities (~6 million) for reference. E.g., 
  ``` ruby
-	bash download.sh		# download the KB files
-	python Gen_KB_entities.py 	# generate all entities in KB
+bash download.sh		# download the KB files
+python Gen_KB_entities.py 	# generate all entities in KB
 ```
 
 ## Code
@@ -46,11 +46,11 @@ Notable, the used knowledge base for QALD dataset is DBpedia 2016-10. Please dow
  
 **Step2:** Generating aligned word embedding for source language (e.g., German) and target language (English) by
  - Directly download the published aligned word vectors by fastText from [here](https://fasttext.cc/docs/en/aligned-vectors.html). E.g.,
-	  ```ruby
-	  # download aligned word embeddings
-		 wget https://dl.fbaipublicfiles.com/fasttext/vectors-aligned/wiki.en.align.vec
-		 wget https://dl.fbaipublicfiles.com/fasttext/vectors-aligned/wiki.de.align.vec
-	```
+```ruby
+	# download aligned word embeddings
+	wget https://dl.fbaipublicfiles.com/fasttext/vectors-aligned/wiki.en.align.vec
+	wget https://dl.fbaipublicfiles.com/fasttext/vectors-aligned/wiki.de.align.vec
+```
  - Employ [MUSE](https://github.com/facebookresearch/MUSE) to align monolingual word embeddings:
 	- **supervised**: using a bilingual dictionary to learn a mapping from the source to the target space.
 	- **unsupervised**: without any parallel data or anchor point, learn a mapping from the source to the target space using adversarial training and (iterative) Procrustes refinement.
