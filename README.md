@@ -3,7 +3,13 @@ We released the used QALD data and code for the paper entitled "Pivots-based Can
 # QALD Data
 The original QALD 4-9 datasets are available [here](https://github.com/ag-sc/QALD).  
 
-We processed these datasets for cross-lingual entity linking task. We merged multilingual QALD 4-9 data, and then extracted examples which can be execute on knowledge base. In this paper, the used **Knowledge Base** is DBpedia 2016-10. Please download the KB from this [link](https://wiki.dbpedia.org/downloads-2016-10). The result files are in **QALD_data** folder:
+We processed these datasets for cross-lingual entity linking task. We merged multilingual QALD 4-9 data. These examples are cross-lingual question answering over different knowledge bases. We extracted examples which can be execute on DBpedia 2016-10. Please download this knowledge base from this [link](https://wiki.dbpedia.org/downloads-2016-10). We provided our code to download this knowledge base and extract its all entities for reference. E.g., 
+ ``` ruby
+	bash download.sh		# download the KB files
+	python Gen_KB_entities.py 	# generate all entities in KB
+```
+
+The result files are in **QALD_data** folder:
   - **QALD_multilingual4-9.json**: This file can be used for cross-lingual entity linking and cross-lingual question answering over knowledge base. 
   - **QALD_XEL folder**. We extracted data for cross-lingual entity linking spanning eight languages. Below are sevearl examples: 
  ```ruby
@@ -69,10 +75,7 @@ We processed these datasets for cross-lingual entity linking task. We merged mul
  
 **Step4:**  Lexical Retrieval and Generate TopN Candidates
  - Generate all entities in KB. In our paper, we used the DBpedia 2016-10, which contains ~6million entites. E.g.,
-	 ``` 
-	bash download.sh		# download the KB files
-	python Gen_KB_entities.py 	# generate all entities in KB
-	 ```
+	
  - Build search index for all entities.  In this paper, we build the index of all entities in KB using [Whoosh](https://whoosh.readthedocs.io/en/latest/index.html), which is a library of classes and functions for indexing text and then searching the index. E.g.,
   	```
 	python Build_KB_Index.py
