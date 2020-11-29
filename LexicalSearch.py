@@ -1,19 +1,22 @@
 from whoosh.qparser import QueryParser
 from whoosh.fields import *
-from whoosh.index import create_in,open_dir
+from whoosh.index import open_dir
 import pickle
 from tqdm import tqdm
 from whoosh import scoring
-from whoosh.analysis import StemmingAnalyzer,RegexTokenizer,LowercaseFilter,StopFilter,FancyAnalyzer
+from whoosh.analysis import StemmingAnalyzer
 from whoosh import qparser
 import timeout_decorator
 import json
 
-def _read_json(input_file):
-    """Reads a tab separated value file."""
+def read_json(input_file):
     with open(input_file, "r", encoding="utf-8-sig") as f:
         content = f.read()
         return json.loads(content)
+def write_json_to_file(json_object, json_file, mode='w', encoding='utf-8'):
+    with open(json_file, mode, encoding=encoding) as outfile:
+        json.dump(json_object, outfile, indent=4, sort_keys=True, ensure_ascii=False)
+
 @timeout_decorator.timeout(5, use_signals=True)
 def SearchQuery(searcher,query,TopN):
     results=[]
@@ -49,21 +52,16 @@ def ComputeRecall(QALD_dict):
     f1 = 2*pre*recall/(pre+recall)
     print(pre,recall,f1)
     return (pre,recall,f1)
-import sys
 import os
 import torch
 if __name__ == '__main__':
     Score = "bm25"  # bm25, tfidf, tf
-    Pivots_N = 5    # number of plausible English mentions
+    Pivots_N = 10    # number of plausible English mentions
     Search_N = 500  # number of searched entities for each plausible English mention
-
-    InputIndexDir = "data_process/DBIndex"
-    data_dir = "QALd_XEL/"
-    output_dir = "Output/"
-
-    if not os.path.exists(output_dir):
-        os.makedirs(output_dir)
-
+    InputIndexDir = "data_process/DBIndex2"
+    input_data_file = "Release/output_toy_de.json"
+    output_data_file = "Release/output_toy_de_search.json"
+    #------------------------------------------------------
     if Score == "bm25":
         myscore = scoring.BM25F()
     elif Score =="tfidf":
@@ -81,33 +79,35 @@ if __name__ == '__main__':
     All_Result = []
     ix = open_dir(InputIndexDir)
     sf = torch.nn.Softmax(dim=0)
-    for lan in ['de','fr','ru','es','it','nl','ro','pt']:
-        infile = "{}/qald_{}.pk".format(data_dir,lan)
-        outfile = "{}/qald_{}_xel.pk".format(output_dir,lan)
-        QALD_list = pickle.load(open(infile,'rb'))
-        with ix.searcher(weighting=myscore) as searcher:
-            parser = QueryParser("title", ix.schema,group=qparser.OrGroup)
-            for item in tqdm(QALD_list):
+    alldata = read_json(input_data_file)
+    with ix.searcher(weighting=myscore) as searcher:
+        parser = QueryParser("title", ix.schema,group=qparser.OrGroup)
+        for item in tqdm(alldata):
+            search_result= {}
+            for keyword,plau_en_mentions in item['plausible_en_mentions'].items():
+                per_uris = []
+                per_search_result =[]
+                for (word, score) in plau_en_mentions[0:Pivots_N]:
+                    query = parser.parse(word)
+                    results = SearchQuery(searcher, query, Search_N)
+                    hit_score = [hit.score for hit in results]
+                    new_score = sf(torch.Tensor(hit_score)).tolist()
+                    new_score = [score * s for s in new_score]
+                    hit_title = [hit['title'] for hit in results]
+                    hit_content = [hit['content'] for hit in results]
+                    per_search_result.extend(list(zip(hit_title, hit_content, new_score)))
+                for c_result in per_search_result:
+                    for auri in c_result[1].split(" "):
+                        per_uris.append((auri, c_result[2]))
+                searched = sorted(per_uris, key=lambda x: x[1], reverse=True)
                 searched_uris = []
-                new_item = {}
-                for keyword,pwords in item['plau_words'].items():
-                    per_uris = []
-                    per_search_result =[]
-                    for (word, score) in pwords[0:Pivots_N]:
-                        query = parser.parse(word)
-                        results = SearchQuery(searcher, query, Search_N)
-
-                        hit_score = [hit.score for hit in results]
-                        new_score = sf(torch.Tensor(hit_score)).tolist()
-                        new_score = [score * s for s in new_score]
-                        hit_title = [hit['title'] for hit in results]
-                        hit_content = [hit['content'] for hit in results]
-                        per_search_result.extend(list(zip(hit_title, hit_content, new_score)))
-                    for c_result in per_search_result:
-                        for auri in c_result[1].split(" "):
-                            per_uris.append((auri, c_result[2]))
-                    new_searched = sorted(per_uris, key=lambda x: x[1], reverse=True)[0:1000]
-                    searched_uris.extend([item[0] for item in new_searched])
-                    output_search_result[keyword] = new_searched
-                item['xel_results'] = output_search_result
-        pickle.dump(QALD_list,open(outfile,'wb'))
+                searched_scores = []
+                for (uri,score) in searched:
+                    if uri not in searched_uris:
+                        searched_uris.append(uri)
+                        searched_scores.append(score)
+                    if len(searched_uris)>=1000:
+                        break
+                search_result[keyword] = list(zip(searched_uris,searched_scores))
+            item['xel_cr_results'] = search_result
+        write_json_to_file(alldata,output_data_file)
