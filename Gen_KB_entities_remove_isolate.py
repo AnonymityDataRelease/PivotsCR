@@ -1,3 +1,4 @@
+# We want to remove the isolate entities, which exist in label_en and category_label_en but not exist predictions to other entities. This process is optinal.
 from tqdm import tqdm
 import pickle
 import os
