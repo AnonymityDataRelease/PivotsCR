@@ -56,6 +56,9 @@ python Gen_KB_entities.py 	# generate all entities in these KB files
 ```
 
 ## Code
+
+The code to implement our proposed "pivots-based candidate retrieval" method.
+
 **Step1:** Preparing cross-lingual entity linking data and the corresponding Knowledge Base.
 
 In this paper, we used the DBpedia 2016-10. We provided our code to download this knowledge base and extract its all entities (~6 million) for reference. E.g., 
