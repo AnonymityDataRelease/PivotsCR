@@ -111,8 +111,8 @@ Notable, other multilingual word representation methods also can be used.
 	 # input file: toydata/input_de.json
 	 # output file: toydata/plausible_de.json
 	 # plausible English mentions of "sieben wunder der antiken welt":
-	 ('seven miracle the antiquity world', 0.05677208132856291)
-	 ('seven miracle the ancient world', 0.05670805866980465)...
+	 # ('seven miracle the antiquity world', 0.05677208132856291)
+	 # ('seven miracle the ancient world', 0.05670805866980465)...
 	 ```
  
 **Step4:**  Lexical Retrieval and Generate TopN Candidates	
