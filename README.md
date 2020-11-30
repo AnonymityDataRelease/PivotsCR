@@ -16,7 +16,7 @@ We processed these datasets for cross-lingual entity linking task. We merged mul
  
  - **QALD_XEL folder**. We splited the previous file into different languages, including German (de), French (fr), Russian (ru), Dutch (nl), Spanish (es), Italian (it), Romanian (ro), and Portuguese (pt), and extracted information related to XEL task. Below are several examples: 
  ```ruby
-    # an example in QALD_XEL/qald_de.json
+    # an example in QADL_data/QALD_XEL/qald_de.json
     {
         "context": "Wer ist der König der Niederlande?",
         "id": 562,
@@ -29,7 +29,7 @@ We processed these datasets for cross-lingual entity linking task. We merged mul
             "<http://dbpedia.org/resource/Netherlands>"
         ]
     },
-    # an example in QALD_XEL/qald_ro.json
+    # an example in QADL_data/QALD_XEL/qald_ro.json
     {
         "context": "Dă-mi toate prenumele feminine.",
         "id": 30,
