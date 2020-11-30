@@ -3,9 +3,9 @@ We released the used **QALD data** and **code** for the paper entitled "Pivots-b
 
 Toy files and examples are provided to run our method.
 
-# QALD Data
+## QALD Data
 
-## Cross-lingual Entity linking data
+### Cross-lingual Entity linking data
 
 The original QALD 4-9 datasets are available [here](https://github.com/ag-sc/QALD).  
 
@@ -42,7 +42,7 @@ We processed these datasets for cross-lingual entity linking task. We merged mul
     }
 ```
 
-## Knowledge Base
+### Knowledge Base
 
 Notable, the used knowledge base for QALD dataset is DBpedia 2016-10. Please download this knowledge base from this [link](https://wiki.dbpedia.org/downloads-2016-10).
 
@@ -55,7 +55,7 @@ python Gen_KB_entities.py 	# generate all entities in these KB files
 #  '<http://dbpedia.org/resource/Antique_Beat>':'antique beat',...}
 ```
 
-# Code
+## Code
 **Step1:** Preparing cross-lingual entity linking data and the corresponding Knowledge Base.
 
 In this paper, we used the DBpedia 2016-10. We provided our code to download this knowledge base and extract its all entities (~6 million) for reference. E.g., 
