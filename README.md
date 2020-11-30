@@ -6,9 +6,7 @@ Toy files and examples are provided to run our method.
 # QALD Data
 The original QALD 4-9 datasets are available [here](https://github.com/ag-sc/QALD).  
 
-**Cross-lingual Entity linking data**
-
-We processed these datasets for cross-lingual entity linking task. We merged multilingual QALD 4-9 data. These examples are cross-lingual question answering over different knowledge bases. We extracted examples which can be execute on DBpedia 2016-10. The result files are in **QALD_data** folder:
+**1. Cross-lingual Entity linking data:** We processed these datasets for cross-lingual entity linking task. We merged multilingual QALD 4-9 data. These examples are cross-lingual question answering over different knowledge bases. We extracted examples which can be execute on DBpedia 2016-10. The result files are in **QALD_data** folder:
  - **QALD_multilingual4-9.json**: This merged file can be used for cross-lingual entity linking (XEL) and cross-lingual question answering over knowledge base (X-KBQA). 
  
  - **QALD_XEL folder**. We further cleaned up the pervious file to produce XEL data of eight different languages, including German (de), French (fr), Russian (ru), Dutch (nl), Spanish (es), Italian (it), Romanian (ro), and Portuguese (pt). Below are several examples: 
@@ -41,9 +39,7 @@ We processed these datasets for cross-lingual entity linking task. We merged mul
     }
 ```
 
-**Knowledge base**
-
-Notable, the used knowledge base for QALD dataset is DBpedia 2016-10. Please download this knowledge base from this [link](https://wiki.dbpedia.org/downloads-2016-10).
+**2. Knowledge base:** Notable, the used knowledge base for QALD dataset is DBpedia 2016-10. Please download this knowledge base from this [link](https://wiki.dbpedia.org/downloads-2016-10).
 
 We provided our code to download this knowledge base and extract its all entities (~6 million) for reference. E.g., 
  ``` ruby
