@@ -121,7 +121,8 @@ def generate_mention2uri(uri2mention_dict,output_file):
 
 if __name__ == '__main__':
 
-    dir = "DBpedia_bz"
+    dir = "DBpedia_bz" # folder of download KB files
+    
     output_uri2mention_file = "clean_kb_data/uri2mention_orig.pk"
     output_mention2uri_file = "clean_kb_data/mention2uri_orig.pk"
     output_uri2mention_file_dis = "clean_kb_data/uri2mention_dis.pk"
@@ -154,7 +155,7 @@ if __name__ == '__main__':
         print("uri2mention",uri2mention_dict['<http://dbpedia.org/ontology/River>'])
         mention2uri_dict = generate_mention2uri(uri2mention_dict, output_mention2uri_file)
         print("mention2uri",mention2uri_dict['river'])
-    #------------uri disambiguation---
+    #------------uri disambiguation--------------
     disambiguation_file_name = ["redirects_en",
                                 "disambiguations_en",
                                 "uri_same_as_iri_en",
