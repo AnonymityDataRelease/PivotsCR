@@ -101,7 +101,7 @@ Notable, other multilingual word representation methods also can be used.
 	 ```
 
  - Clean the similar words using NMS algorithm, and generate a set of plausible English mentions for each source mention.
-	 ```
+	 ```ruby
 	 python SemanticNMS.py [input_file] [output_file]
 	 
 	 # toy examples:
