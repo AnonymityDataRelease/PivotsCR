@@ -1,5 +1,7 @@
 # PivotsCR
-We released the used **QALD data** and **code** for the paper entitled "Pivots-based Candidate Retrieval for Cross-lingual Entity Linking".
+We released the used **QALD data** and **code** of the proposed method in the paper entitled "Pivots-based Candidate Retrieval for Cross-lingual Entity Linking".
+
+We also released our code to process knowledge base (DBpedia) for reference.
 
 Toy files and examples are provided to run our method.
 
