@@ -3,7 +3,7 @@ We released the used **QALD data** and **code** of the proposed method in the pa
 
 We also released our code to process knowledge base (DBpedia) for reference.
 
-Toy files and examples are also provided to run our method.
+Toy files and examples are provided to run our method.
 
 ## QALD Data
 
