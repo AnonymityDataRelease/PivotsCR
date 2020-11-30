@@ -54,7 +54,7 @@ python Gen_KB_entities.py 	# generate all entities in these KB files
 
 We provided our code to download this knowledge base and extract its all entities (~6 million) for reference. E.g., 
 ```ruby
-bash download.sh		# download the KB files
+bash download.sh		# download the used KB files
 python Gen_KB_entities.py 	# generate all entities in KB
 ```
 **Step2:** Generating aligned word embedding for source language (e.g., German) and target language (English). There are two optional methods:
