@@ -8,7 +8,7 @@ The original QALD 4-9 datasets are available [here](https://github.com/ag-sc/QAL
 
 We processed these datasets for cross-lingual entity linking task. We merged multilingual QALD 4-9 data. These examples are cross-lingual question answering over different knowledge bases. We extracted examples which can be execute on DBpedia 2016-10. The result files are in **QALD_data** folder:
  - **QALD_multilingual4-9.json**: This file can be used for cross-lingual entity linking (XEL) and cross-lingual question answering over knowledge base (X-KBQA). Each example contains: 
- ```ruby
+ ```
 	 - questions from different languages, 
 	 - sparql to answer questions (gold answer for X-KBQA task, denoted as query), 
 	 - keywords of questions, 
