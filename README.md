@@ -46,7 +46,7 @@ bash download.sh		# download the KB files and put them in "DBpedia_bz" folder
 python Gen_KB_entities.py 	# generate all entities in these KB files
 # output: a dictionary contains all entities and their corresponding aliases. For example, 
 # {'<http://dbpedia.org/resource/World_of_Miracles>': 'world miracles', 
-   '<http://dbpedia.org/resource/Antique_Beat>':'antique beat',...}
+#  '<http://dbpedia.org/resource/Antique_Beat>':'antique beat',...}
 ```
 
 ## Code
