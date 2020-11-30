@@ -50,8 +50,11 @@ Notable, the used knowledge base for QALD dataset is DBpedia 2016-10. Please dow
 
 We provided our code to download this knowledge base and extract its all entities (~6 million) for reference. E.g., 
  ``` ruby
-bash download.sh		# download the KB files and put them in "DBpedia_bz" folder
-python Gen_KB_entities.py 	# generate all entities in these KB files
+# download the KB files and put them in "DBpedia_bz" folder
+bash download.sh	
+# generate all entities in these KB files
+python Gen_KB_entities.py 	
+# input: the name of folder contains KB files, i.e., "DBpedia_bz"
 # output: a dictionary contains all entities and their corresponding aliases. For example, 
 # {'<http://dbpedia.org/resource/World_of_Miracles>': 'world miracles', 
 #  '<http://dbpedia.org/resource/Antique_Beat>':'antique beat',...}
