@@ -72,7 +72,7 @@ Notable, other multilingual word representation methods also can be used.
 
 **Step3:** Generate Plausible English Mentions
 
- - Search the most similar English words for each word in a source-language mention. In this paper, we used the CSLS (Cross-domain similarity local scaling) proposed by [MUSE](https://github.com/facebookresearch/MUSE). Alternatively, you can employ the cosine similarity of vectors to measure the word similarity and [GENSIM](https://radimrehurek.com/gensim/models/keyedvectors.html) is suggested. E.g.,
+ - Search the most similar English words for each word in a source-language mention. In this paper, we used the CSLS (Cross-domain similarity local scaling) proposed by [MUSE](https://github.com/facebookresearch/MUSE) (e.g., in "csls_knn_" in word_translation.py). Alternatively, you can employ the cosine similarity of vectors to measure the word similarity and [GENSIM](https://radimrehurek.com/gensim/models/keyedvectors.html) is suggested. E.g.,
 	 ```ruby
 	 # generate similar words
 	 import gensim
