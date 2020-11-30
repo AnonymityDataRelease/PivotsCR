@@ -1,19 +1,11 @@
-import json
-def read_json(input_file):
-    """Reads a tab separated value file."""
-    with open(input_file, "r", encoding="utf-8-sig") as f:
-        content = f.read()
-        return json.loads(content)
-import pickle
 from whoosh.analysis import FancyAnalyzer
 from whoosh.index import create_in
 from whoosh.fields import *
 from whoosh.qparser import QueryParser
 from whoosh.analysis import StemmingAnalyzer,FancyAnalyzer
 from tqdm import tqdm
-import os
 import pickle
-import os
+
 if __name__ == '__main__':
 
     uri2mention_file = "uri2mention_dis.pk"
@@ -41,7 +33,7 @@ if __name__ == '__main__':
 
     schema = Schema(title=TEXT(stored=True, analyzer=StemmingAnalyzer()), content=TEXT(stored=True))
 
-    
+   
     if not os.path.exists(output_DBindex_dir):
         os.mkdir(output_DBindex_dir)
     ix = create_in(output_DBindex_dir, schema)
