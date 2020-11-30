@@ -115,7 +115,7 @@ Notable, other multilingual word representation methods also can be used.
 	python LexicalSearch.py
 	
 	# input_file: toydata/plausible_de.json, the path of KB Index
-	# output_file: toydata/output_de.json. E.g., the xel_cr_results of "sieben wunder der antiken welt":
+	# output_file: toydata/output_de.json. E.g., the "xel_cr_results" of German mention "sieben wunder der antiken welt" include:
 	# [('<http://dbpedia.org/resource/Category:Seven_Wonders_of_the_Ancient_World>', 0.04279009208377855),
 	# ('<http://dbpedia.org/resource/Seven_Wonders_of_the_Ancient_World>', 0.04279009208377855),
 	# ('<http://dbpedia.org/resource/World_of_Miracles>', 0.035886112485214505)...]
