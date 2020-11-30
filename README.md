@@ -5,7 +5,7 @@ Toy files and examples are provided to run our method.
 
 ## QALD Data
 
-### Cross-lingual Entity linking data
+**1. Cross-lingual entity linking data**
 
 The original QALD 4-9 datasets are available [here](https://github.com/ag-sc/QALD).  
 
@@ -42,7 +42,7 @@ We processed these datasets for cross-lingual entity linking task. We merged mul
     }
 ```
 
-### Knowledge Base
+**2. Knowledge base**
 
 Notable, the used knowledge base for QALD dataset is DBpedia 2016-10. Please download this knowledge base from this [link](https://wiki.dbpedia.org/downloads-2016-10).
 
