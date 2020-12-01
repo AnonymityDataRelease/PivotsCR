@@ -78,11 +78,11 @@ python Gen_KB_entities.py 	# generate all entities in KB
 	wget https://dl.fbaipublicfiles.com/fasttext/vectors-aligned/wiki.en.align.vec
 	wget https://dl.fbaipublicfiles.com/fasttext/vectors-aligned/wiki.de.align.vec
 	```
- - Employ [MUSE](https://github.com/facebookresearch/MUSE) to align monolingual word embeddings:
+ - Or, employ [MUSE](https://github.com/facebookresearch/MUSE) to align monolingual word embeddings:
 	- **supervised**: using a bilingual dictionary to learn a mapping from the source to the target space.
 	- **unsupervised**: without any parallel data or anchor point, learn a mapping from the source to the target space using adversarial training and (iterative) Procrustes refinement.
 	
-Notable, other multilingual word representation methods also can be used.
+Notable, we used the MUSE method to generate aligned word embeddings in the paper, and other multilingual word representation methods also can be used.
 
 **Step3:** Generate Plausible English Mentions
 
